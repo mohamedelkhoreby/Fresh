@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
-import style from "./Register.module.css";
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { BallTriangle } from 'react-loader-spinner';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
     const [laoding, setLoading] = useState(false);
     const [apiError, setApiError] = useState(null);
     let navigate = useNavigate();
     async function registerSubmit(values) {
-        console.log(values);
         setLoading(true);
         let { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, values)
             .catch((err) => {
                 setApiError(err.response.data.errors.msg);
                 setLoading(false);
             })
-        console.log(data);
         if (data.message === 'success') {
             setLoading(false);
             navigate('/login');
@@ -81,7 +79,8 @@ export default function Register() {
                         visible={true}
                     />
                 </button> : <button disabled={!(formik.isValid && formik.dirty)} type='submit' className='btn bg-main text-light'>Register</button>
-                }
+                }                <Link className="ps-3" to={'/login'}>Login</Link>
+
             </form>
         </div>
     </>
