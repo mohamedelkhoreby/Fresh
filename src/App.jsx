@@ -10,9 +10,10 @@ import Catagories from './Component/Catagories/Catagories';
 import Logout from './Component/Logout/Logout';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './Component/Home/Home';
-
-
-
+import { useContext, useEffect } from 'react';
+import { UserContext } from './Component/Context/UserContext';
+function App() {
+  let { setUserToken } = useContext(UserContext);
   let routers = createBrowserRouter([
     {
       path: '', element: <Layout />, children: [
@@ -28,12 +29,14 @@ import Home from './Component/Home/Home';
       ]
     }
   ])
-   function App() {
-  return (
-    <div className="App">
-      <RouterProvider router={routers}></RouterProvider>
-    </div>
-  );
+
+  useEffect(() => {
+    if (localStorage.getItem('userToken')) {
+      setUserToken(localStorage.getItem('userToken'))
+    }
+  }, [])
+  return (<RouterProvider router={routers}></RouterProvider>
+  )
 }
 export default App;
 
