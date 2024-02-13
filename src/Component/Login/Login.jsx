@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { BallTriangle } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../Context/UserContext';
 
 export default function Login() {
     const [laoding, setLoading] = useState(false);
     const [apiError, setApiError] = useState(null);
+    let navigate = useNavigate();
+    let { setUserToken } = useContext(UserContext);
     async function LoginSubmit(values) {
         setLoading(true);
         let { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signin`, values)
@@ -17,13 +21,15 @@ export default function Login() {
             })
         if (data.message === 'success') {
             setLoading(false);
-
+            localStorage.setItem('userToken', data.token)
+            setUserToken(data.token)
+            navigate('/');
         }
     }
     let validationSchema = Yup.object({
         email: Yup.string().required('Email is required').email('Invaled Email'),
         password: Yup.string().required("Password is required").matches(/^[A-Z][\w @]{5,8}$/, 'Invaled Password ex(Ahmed@123)'),
-       })
+    })
     let formik = useFormik({
         initialValues: {
             email: '',
