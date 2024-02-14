@@ -14,21 +14,23 @@ import { useContext, useEffect } from 'react';
 import { UserContext } from './Component/Context/UserContext';
 import ProtectedRout from './Component/ProtectedRout/ProtectedRout';
 import NotFounded from './Component/NotFounded/NotFounded';
+
 function App() {
   let { setUserToken } = useContext(UserContext);
   let routers = createBrowserRouter([
     {
       path: '', element: <Layout />, children: [
-        { index: true, element:<ProtectedRout><Home /> </ProtectedRout> },
-        { path: "cart", element:<ProtectedRout><Cart /> </ProtectedRout> },
-        { path: "products", element:<ProtectedRout><Products /> </ProtectedRout> },
-        { path: "catagories", element:<ProtectedRout><Catagories /> </ProtectedRout> },
-        { path: "brands", element:<ProtectedRout><Brands /></ProtectedRout>  },
-        { path: "register", element:< Register />  },
-        { path: "login", element:<Login /> },
-        { path: "Logout", element:<Logout />  },
-        { path: "*", element:<NotFounded/>  },
-        { path: "produProductDetalisctis/:id", element: <ProductDetalis /> },
+        { index: true, element: <ProtectedRout><Home /> </ProtectedRout> },
+        { path: "cart", element: <ProtectedRout><Cart /> </ProtectedRout> },
+        { path: "products", element: <ProtectedRout><Products /> </ProtectedRout> },
+        { path: "catagories", element: <ProtectedRout><Catagories /> </ProtectedRout> },
+        { path: "brands", element: <ProtectedRout><Brands /></ProtectedRout> },
+        { path: "productDetails/:id", element: <ProtectedRout><ProductDetalis /></ProtectedRout> },
+        { path: "register", element: <ProtectedRout>< Register /></ProtectedRout> },
+        { path: "login", element: <ProtectedRout><Login /></ProtectedRout> },
+        { path: "Logout", element: <Logout /> },
+        { path: "*", element: <NotFounded /> },
+
       ]
     }
   ])

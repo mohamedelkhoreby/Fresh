@@ -39,6 +39,7 @@ a , a:hover{
 {
     opacity: 1;
     transform: translateY(0%);
+    color: var(--light-color);
 
 }
 .font-sm
@@ -48,6 +49,10 @@ a , a:hover{
 .text-main
 {
     color: var(--main-color);
+}
+.text-main-light
+{
+    color: var(--light-color);
 }
 .bg-main
 {
