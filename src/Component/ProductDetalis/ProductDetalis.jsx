@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { InfinitySpin } from 'react-loader-spinner'
-
+import Slider from "react-slick";
 function ProductDetalis() {
     const [detalis, setDetalis] = useState({});
     const [laoding, setLoading] = useState(true);
@@ -22,6 +22,13 @@ function ProductDetalis() {
         getProductDeralis(id);
     }, []
     );
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
     return <>
         {apiError ? <div className='alert alert-danger py-2'>{apiError}</div>
             : <>
@@ -35,7 +42,9 @@ function ProductDetalis() {
                     :
                     <div className="row align-items-center">
                         <div className="col-md-4">
-                            <img src={detalis.imageCover} className='w-100' alt={detalis.title} />
+                            <Slider {...settings}>
+                                {detalis.images.map(image => <img key={detalis.id} src={image} className='w-100' alt={detalis.title} />)}
+                            </Slider>
                         </div>
                         <div className="col-md-8">
                             <div className="details">
