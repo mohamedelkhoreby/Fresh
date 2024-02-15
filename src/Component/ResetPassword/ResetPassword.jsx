@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { BallTriangle } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/UserContext';
+import BallTriangleLoading from '../Loading/BallTriangle';
 export default function ResetPassword() {
     const [laoding, setLoading] = useState(false);
     const [apiError, setApiError] = useState(null);
@@ -12,7 +12,7 @@ export default function ResetPassword() {
     let { setUserToken } = useContext(UserContext);
     async function ResetPasswordSubmit(values) {
         setLoading(true);
-        let {data} = await axios.put(`https://ecommerce.routemisr.com/api/v1/auth/resetPassword`, values)
+        let { data } = await axios.put(`https://ecommerce.routemisr.com/api/v1/auth/resetPassword`, values)
             .catch((err) => {
                 setApiError(err.response.data.message);
                 setLoading(false);
@@ -52,16 +52,7 @@ export default function ResetPassword() {
                 {formik.errors.newPassword && formik.touched.newPassword ? <div className='alert alert-danger py-2'>{formik.errors.newPassword}</div> : null}
 
                 {laoding ? <button type='button' className='btn bg-main text-light'>
-                    <BallTriangle
-                        height={25}
-                        width={25}
-                        radius={5}
-                        color="#fff"
-                        ariaLabel="ball-triangle-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={true}
-                    />
+                    <BallTriangleLoading />
                 </button> : <button disabled={!(formik.isValid && formik.dirty)} type='submit' className='btn bg-main text-light'>Reset</button>
                 }
             </form>

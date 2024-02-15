@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import { InfinitySpin } from 'react-loader-spinner'
 import Slider from "react-slick";
+import Loading from '../Loading/Loading';
 function ProductDetalis() {
     const [detalis, setDetalis] = useState({});
     const [laoding, setLoading] = useState(true);
@@ -33,12 +33,8 @@ function ProductDetalis() {
         {apiError ? <div className='alert alert-danger py-2'>{apiError}</div>
             : <>
                 {laoding ? <div className="text-center d-flex justify-content-center align-items-center vh-100">
-                    <InfinitySpin
-                        visible={true}
-                        width="400"
-                        color="#4fa94d"
-                        ariaLabel="infinity-spin-loading"
-                    /></div>
+                    <Loading />
+                </div>
                     :
                     <div className="row align-items-center">
                         <div className="col-md-4">

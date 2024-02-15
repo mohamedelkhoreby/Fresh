@@ -1,4 +1,3 @@
-import './styles.css';
 import Layout from './Component/Layout/Layout';
 import Brands from './Component/Brands/Brands';
 import Cart from './Component/Cart/Cart';

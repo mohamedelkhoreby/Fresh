@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { BallTriangle } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import BallTriangleLoading from '../Loading/BallTriangle';
 export default function VerfiyPassword() {
     const [laoding, setLoading] = useState(false);
     const [apiError, setApiError] = useState(null);
@@ -43,16 +43,7 @@ export default function VerfiyPassword() {
                 {formik.errors.resetCode && formik.touched.resetCode ? <div className='alert alert-danger py-2'>{formik.errors.resetCode}</div> : null}
 
                 {laoding ? <button type='button' className='btn bg-main text-light'>
-                    <BallTriangle
-                        height={25}
-                        width={25}
-                        radius={5}
-                        color="#fff"
-                        ariaLabel="ball-triangle-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={true}
-                    />
+                    <BallTriangleLoading/>
                 </button> : <button disabled={!(formik.isValid && formik.dirty)} type='submit' className='btn bg-main text-light'>Verify</button>
                 }
             </form>
