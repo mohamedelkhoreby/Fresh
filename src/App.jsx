@@ -14,6 +14,9 @@ import { useContext, useEffect } from 'react';
 import { UserContext } from './Component/Context/UserContext';
 import ProtectedRout from './Component/ProtectedRout/ProtectedRout';
 import NotFounded from './Component/NotFounded/NotFounded';
+import ForgetPassword from './Component/ForgetPassword/ForgetPassword';
+import VerfiyPassword from './Component/VerfiyPassword/VerfiyPassword';
+import ResetPassword from './Component/ResetPassword/ResetPassword';
 
 function App() {
   let { setUserToken } = useContext(UserContext);
@@ -26,9 +29,12 @@ function App() {
         { path: "catagories", element: <ProtectedRout><Catagories /> </ProtectedRout> },
         { path: "brands", element: <ProtectedRout><Brands /></ProtectedRout> },
         { path: "productDetails/:id", element: <ProtectedRout><ProductDetalis /></ProtectedRout> },
-        { path: "register", element: <ProtectedRout>< Register /></ProtectedRout> },
-        { path: "login", element: <ProtectedRout><Login /></ProtectedRout> },
+        { path: "register", element: < Register /> },
+        { path: "login", element: <Login /> },
         { path: "Logout", element: <Logout /> },
+        { path: "forgetpassord", element: <ForgetPassword /> },
+        { path: "verfiypassword", element: <VerfiyPassword /> },
+        { path: "resetPassword", element: <ResetPassword /> },
         { path: "*", element: <NotFounded /> },
 
       ]

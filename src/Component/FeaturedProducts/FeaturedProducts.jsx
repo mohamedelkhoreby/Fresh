@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import "./FeaturedProducts.module.css"
 import axios from 'axios'
 import { InfinitySpin } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
@@ -35,7 +34,7 @@ function FeaturedProducts() {
             </div>
                 : <div className="row gy-4">
                     {products.map(product =>
-                        <div className="col-lg-2 ">
+                        <div key={product.id} className="col-lg-2 ">
                             <Link to={`/productDetails/${product.id}`}>
                                 <div className="product p-2">
                                     <img src={product.imageCover} className='w-100' alt={product.title} />

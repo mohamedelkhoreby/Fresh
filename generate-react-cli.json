@@ -5,8 +5,7 @@
   "component": {
     "default": {
       "customTemplates": {
-        "component": "src/Component/Templates/TemplateName.jsx",
-        "style": "src/Component/Templates/TemplateName.module.css"
+        "component": "src/Component/Templates/TemplateName.jsx"
       },
       "path": "src/Component",
       "withStyle": true,
