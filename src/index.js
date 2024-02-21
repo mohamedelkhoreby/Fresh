@@ -9,10 +9,16 @@ import UserContextProvider from './Component/Context/UserContext';
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { QueryClient, QueryClientProvider } from 'react-query';
+import CartContextProvider from './Component/Context/CartContext';
+let queryClint = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <UserContextProvider>
-        <App />
-    </UserContextProvider>
+    <CartContextProvider>
+        <UserContextProvider>
+            <QueryClientProvider client={queryClint}>
+                <App />
+            </QueryClientProvider>
+        </UserContextProvider>
+    </CartContextProvider>
 );
-
